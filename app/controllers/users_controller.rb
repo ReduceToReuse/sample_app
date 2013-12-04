@@ -23,21 +23,21 @@ def create
       redirect_to @user
     else
       render 'new'
+    end
 end
+
 
 def edit
     @user = User.find(params[:id])
 end
   
 def update
-    
-    if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated"
-      redirect_to @user
-    else
-      render 'edit'
+  if @user.update_attributes(user_params)
+    flash[:success] = "Profile updated"
+    redirect_to @user
+  else
+    render 'edit'
   end 
-end
 end
 
 def destroy
@@ -48,7 +48,7 @@ def destroy
 
 private
     def user_params
-    	params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    	params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar)
   end
 
 def signed_in_user
